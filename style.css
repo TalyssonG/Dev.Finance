@@ -5,10 +5,25 @@
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    font-size: 93,75% ; /* Máximo da ft na web = 16px -  Regra de três */
+}
 
 body {
     background: #f0f2f5;
     font-family: 'Poppins', sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 .container {
@@ -23,6 +38,22 @@ h2 {
     margin-bottom: 0.8rem;
     color: var(--dark-blue);
     font-weight: normal;
+}
+
+/* Links e buttons */
+
+a {
+    color: #49aa26;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #3dd705;
+}
+
+.button.new {
+    display: inline-block;
+    margin-bottom: .8rem;
 }
 
 /* Haeder =========== */
@@ -62,6 +93,9 @@ header {
 .card h3 {
     font-weight: normal;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .card p {
@@ -82,16 +116,21 @@ header {
     border-spacing: 0 0.5rem;
     color: #171923;
 }
- table thead tr th:first-child,
- table tbody tr td:first-child {
-    border-radius: 0.25rem 0 0 0.5rem;
+
+table thead tr th:first-child, 
+table tbody tr td:first-child {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+table thead tr th:last-child, 
+table tbody tr td:last-child {
+    border-radius: 0 0.25rem .25rem 0 ;
 }
 
 table th {
     background: white;
     font-weight: normal;
     padding: 1rem 2rem;
-
     text-align: left;
 }
 
@@ -103,7 +142,6 @@ table tbody tr:hover {
     opacity: 1;
 }
 
-
 table tbody td {
     background: white;
     padding: 1rem 2rem;
@@ -113,19 +151,34 @@ td.description {
     color: #171923;
 }
 
-td.income{
+td.income {
     color: #12a454;
 }
 
-td.expense{
+td.expense {
     color: #e92929;
 }
+
 /* Footer =========== */
 
 footer {
     text-align: center;
     padding: 4em 0 2rem;
     color: #171923;
-
     opacity: 0.6;
+}
+
+/* Responsive =========== */
+
+@media (min-width: 800px) {
+    html {
+        font-size: 87.5%; /* 14px */
+    }
+
+    #balance {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+
 }
