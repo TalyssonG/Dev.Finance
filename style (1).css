@@ -47,12 +47,12 @@ h2{
 
 /* Links & Buttons ===================================================*/
 a{
-    color:var(--green);
+    color: #ffc03D;
     text-decoration: none;
 }
 
 a:hover{
-    color:var(--lightgreen);
+    color:#fccd67;
 }
 
 button{
@@ -93,7 +93,7 @@ button:hover{
 
 /* Header =======================================================*/
 header{
-    background:#2d4a22;
+    background:#432344;
     padding:2rem 0 10rem;
     text-align:center;
 }
@@ -137,7 +137,7 @@ header{
 }
 
 .card.total{
-    background:var(--green);
+    background:#ffc03D;
     color:white;
 }
 
