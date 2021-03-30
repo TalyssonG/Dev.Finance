@@ -85,10 +85,11 @@ const DOM = {
   addTransaction(transaction, index) {
     const tr = document.createElement('tr')
     tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+    tr.dataset.index = index
 
     DOM.transactionsContainer.appendChild(tr)
   },
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     const CSSclass = transaction.amount > 0 ? "income" : "expense"
 
     const amount = Utils.formatCurrency(transaction.amount)
@@ -98,7 +99,7 @@ const DOM = {
       <td class="${CSSclass}">${amount}</td>
       <td class="date">${transaction.date}</td>
       <td>
-          <img src="./assets/minus.svg" alt="Remover 
+          <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover 
           Transação">
       </td>
     `
@@ -153,11 +154,10 @@ const Utils = {
 const App = {
   init() {
 
-    Transaction.all.forEach(transaction => {
-      DOM.addTransaction(transaction)
-    })
+    Transaction.all.forEach(DOM.addTransaction)
 
     DOM.updateBalance()
+    
 
   },
   reload() {
@@ -204,6 +204,12 @@ const Form = {
     }
   },
 
+  clearFields() {
+    Form.description.value = ""
+    Form.amount.value = ""
+    Form.date.value = ""
+  },
+
   submit(event) {
     event.preventDefault()
 
@@ -212,10 +218,11 @@ const Form = {
       // formatar os dados para salvar
       const transaction = Form.formatValues()
       // Salvar
-      // apagar os dados do formúlario
+      Transaction.add(transaction)
+      // apagar/Limpar os dados do formúlario
+      Form.clearFields()
       // modal feche
-      // Atualizar a aplicação
-
+      Modal.close()
     } catch (error){
          alert(error.message)
     }
